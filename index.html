@@ -1,0 +1,51 @@
+<html>
+	<head>
+		<title>JV MIDI Tools</title>
+		<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="css/main.css" type="text/css">
+		<script src='js/filesaver.js'></script>
+		<script src='js/WebMIDIAPI.js'></script>
+		<script src="js/jv.js"></script>
+		<style>
+			* { font-family:sans-serif;}
+			#build { font-size:28pt; }
+			#midiFailed {
+				border: 2px solid red;
+				padding: 30px;
+				font-size:18pt;
+			 	font-color:red;
+				display:none;
+			}
+		</style>
+	</head>
+	<body onload="jv_init()">
+
+		<h2>JV MIDI Tools</h2>
+
+		This web application extracts the patch data from real-life JV units reachable over MIDI.  
+		It uses the WebMIDI API to communicate with the real device.
+
+		<div class="midi">MIDI Input: <select id=midiIn onchange='changeMidiIn();'>
+			<option value="">Not connected</option>
+		</select>
+			 MIDI Output:
+		<select id=midiOut onchange='changeMidiOut();'>
+			<option value="">Not connected</option>
+		</select>
+		</div>
+
+		<div>
+			<input type='button' id='build' value='Build Patch Script' onclick='build_script()'/>
+		</div>
+
+		<div id='s1'></div>
+		<div id='s2'></div>
+		<div id='s3'></div>
+	
+		<div id='midiFailed'>
+			You must have MIDI enabled on this version of Chrome. You can do this
+			by entering <a href='chrome://flags'>chrome://flags</a> in your URL bar and searching for "Enable Web MIDI API" Enable it, then relaunch chrome.
+		</div>
+
+	</body>
+</html>
