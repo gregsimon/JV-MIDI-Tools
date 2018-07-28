@@ -1,7 +1,6 @@
 "Copyright 2014-2018 Greg Simon"
 
-
-var midiAccess = null;
+var midi = null;
 var midiIn = null;
 var midiOut = null;
 var selectMIDIIn = null;
@@ -12,29 +11,33 @@ var studioSetControlChannel = 16;
 
 
 function jv_init() {
-
-  // TODO check if midi exists.
-
-
-	if (navigator.requestMIDIAccess)
-   		navigator.requestMIDIAccess({sysex: true}).then( onMIDIInit, onMIDIFail );
+  navigator.requestMIDIAccess().then(onSuccessCallback, onMIDIFailCallback);
 }
 
+// used for chaining
 var g_next_midi_callback_fn = undefined;
 
 function midiMessageReceived(event) {
-  if (g_bank_timeout_id != undefined)
-    clearTimeout(g_bank_timeout_id);
-  g_bank_timeout_id = undefined;
+  //console.log("TODO : midiMessageReceived");
 
-	/*console.log("MIDI MESSAGE IN "+(event.data.length-13)+
+  //if (g_bank_timeout_id != undefined)
+  //  clearTimeout(g_bank_timeout_id);
+  //g_bank_timeout_id = undefined;
+  if (event.data.length == 1)
+    return;
+
+  console.log("TODO : midiMessageReceived " + event.data.length);
+  printArrayHex(event.data);
+
+  return;
+	console.log("MIDI MESSAGE IN "+(event.data.length-13)+
       " addr "+event.data[7].toString(16)+" "+
       event.data[8].toString(16)+" "+
       event.data[9].toString(16)+" "+event.data[10].toString(16)) ;
-  */
+  
 
-  if (g_next_midi_callback_fn != undefined)
-    g_next_midi_callback_fn(event);
+  //if (g_next_midi_callback_fn != undefined)
+  //  g_next_midi_callback_fn(event);
 }
 
 var g_bank_index =-1;
@@ -71,6 +74,10 @@ var g_bank_collection_fns = [
 ];
 
 var g_tones = [];
+
+function read_patch() {
+
+}
 
 // This is the kick-off function that builds
 // the entire script. It collects all banks that are available
@@ -852,70 +859,61 @@ function printArrayHex(arr) {
   }
   console.log(s);
 }
-function onMIDIInit( midi ) {
-  var preferredIndex = 0;
-  midiAccess = midi;
-  selectMIDIIn=document.getElementById("midiIn");
-  selectMIDIOut=document.getElementById("midiOut");
 
-  var list=midiAccess.inputs();
+function onSuccessCallback(access) {
+  midi = access;
+  selectMIDIIn = document.getElementById("midiIn");
+  selectMIDIOut = document.getElementById("midiOut");
 
-  // clear the MIDI input select
-  selectMIDIIn.options.length = 0;
+  let 
+    inputs = midi.inputs,
+    outputs = midi.outputs;
 
-  for (var i=0; i<list.length; i++)
-    if (list[i].name.toString().indexOf("INTEGRA") != -1)
-      preferredIndex = i;
+  inputs.forEach((port) => {
+    selectMIDIIn.options.add(new Option(port.name, port.fingerprint, false, false));
+  });
+  selectMIDIIn.onchange = changeMIDIIn;
 
-  if (list.length) {
-    for (var i=0; i<list.length; i++)
-      selectMIDIIn.options[i]=new Option(list[i].name,list[i].fingerprint,i==preferredIndex,i==preferredIndex);
-
-    midiIn = list[preferredIndex];
-    midiIn.onmidimessage = midiMessageReceived;
-
-    selectMIDIIn.onchange = changeMIDIIn;
-  }
-
-  // clear the MIDI output select
-  selectMIDIOut.options.length = 0;
-  preferredIndex = 0;
-  list=midiAccess.outputs();
-
-  for (var i=0; i<list.length; i++)
-    if (list[i].name.toString().indexOf("INTEGRA") != -1)
-      preferredIndex = i;
-
-  if (list.length) {
-    for (var i=0; i<list.length; i++)
-      selectMIDIOut.options[i]=new Option(list[i].name,list[i].fingerprint,i==preferredIndex,i==preferredIndex);
-
-    midiOut = list[preferredIndex];
-    selectMIDIOut.onchange = changeMIDIOut;
-  }
+  outputs.forEach((port) => {
+    selectMIDIOut.options.add(new Option(port.name, port.fingerprint, false, false));
+  });
+  selectMIDIOut.onchange = changeMIDIOut;
 }
 
-function changeMIDIIn( ev ) {
-  var list=midiAccess.inputs();
-  var selectedIndex = ev.target.selectedIndex;
+function changeMIDIIn(event) {
+  let
+    inputs = midi.inputs,
+    selectedIndex = event.target.selectedIndex - 1;
 
-  if (list.length >= selectedIndex) {
-    midiIn = list[selectedIndex];
-    midiIn.onmidimessage = midiMessageReceived;
-  }
+    midiIn = undefined;
+    inputs.forEach((port) => {
+      if (selectedIndex == 0) {
+        port.onmidimessage = midiMessageReceived;
+        midiIn = port;
+        console.log("connected to "+port.name);
+      } else {
+        port.onmidimessage = undefined;
+      }
+      selectedIndex--;
+    });
 }
 
-function changeMIDIOut( ev ) {
-  var list=midiAccess.outputs();
-  var selectedIndex = ev.target.selectedIndex;
+function changeMIDIOut(event) {
+  let
+    outputs = midi.outputs,
+    selectedIndex = event.target.selectedIndex - 1;
 
-  if (list.length >= selectedIndex)
-    midiOut = list[selectedIndex];
+  midiOut = undefined;
+  outputs.forEach((port) => {
+    if (selectedIndex == 0) {
+      midiOut = port;
+      console.log("connected OUTPUT to " + port.name);
+    }
+    selectedIndex--;
+  });
 }
 
-function onMIDIFail( err ) {
-  console.log("MIDI failed to initialize: " + err.code);
+function onMIDIFailCallback(err) {
+  console.log("WebMIDI failed to initialize: " + err.code);
   document.getElementById('midiFailed').style.display='block';
-
-
 }

@@ -1,1 +1,9 @@
 * { font-family:Roboto;}
+#build { font-size:20pt; }
+#midiFailed {
+  border: 2px solid red;
+  padding: 30px;
+  font-size:18pt;
+  font-color:red;
+  display:none;
+}

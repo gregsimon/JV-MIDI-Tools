@@ -4,38 +4,71 @@
 		<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="css/main.css" type="text/css">
 		<script src='js/filesaver.js'></script>
-		<script src='js/WebMIDIAPI.js'></script>
+		<script src='js/WebMIDIAPI.min.js'></script>
 		<script src="js/jv.js"></script>
-		<style>
-			* { font-family:sans-serif;}
-			#build { font-size:28pt; }
-			#midiFailed {
-				border: 2px solid red;
-				padding: 30px;
-				font-size:18pt;
-			 	font-color:red;
-				display:none;
-			}
-		</style>
 	</head>
 	<body onload="jv_init()">
 
 		<h2>JV MIDI Tools</h2>
 
-		This web application extracts the patch data from real-life JV units reachable over MIDI.  
+		Tools for extracting and translating patches from SR-JV80-* compatible hosts. the patch data from real-life JV units reachable over MIDI.  
 		It uses the WebMIDI API to communicate with the real device.
 
+		<div>Source Device Type
+		  <select id=deviceType onchange=''>
+			   <option value="">JV-1010</option>
+			   <option value="">JV-1080</option>
+			   <option value="">JV-2080</option>
+			   <option value="">XV-3080</option>
+			   <option value="">XV-5080</option>
+		  </select>
+		</div>
+		<div>JV Card
+		  <select id=jv_card onchange=''>
+			   <option value="">SR-JV80-01 Pop</option>
+			   <option value="">SR-JV80-02 Orchestral</option>
+			   <option value="">SR-JV80-03 Piano</option>
+			   <option value="">SR-JV80-04 Vintage Synth</option>
+			   <option value="">SR-JV80-05 World</option>
+			   <option value="">SR-JV80-06 Dance</option>
+			   <option value="">SR-JV80-07 Super Sound Set</option>
+			   <option value="">SR-JV80-08 Keyboards 60s & 70s</option>
+			   <option value="">SR-JV80-09 Session</option>
+			   <option value="">SR-JV80-10 Bass and Drum</option>
+			   <option value="">SR-JV80-11 Techno</option>
+			   <option value="">SR-JV80-12 Techno</option>
+			   <option value="">SR-JV80-13 Vocal Collection</option>
+			   <option value="">SR-JV80-14 Asian</option>
+			   <option value="">SR-JV80-15 Special FX</option>
+			   <option value="">SR-JV80-16 Orchestral II</option>
+			   <option value="">SR-JV80-17 Country</option>
+			   <option value="">SR-JV80-18 Latin</option>
+			   <option value="">SR-JV80-19 House</option>
+			   <option value="">SR-JV80-98 Experience 2</option>
+			   <option value="">SR-JV80-99 Experience</option>
+		  </select>
+		</div>
+			<div>MIDI Channel:
+		  	<input type='text' id='channel_no' value='1' />
+		  </div>
+		  <div>Patch #
+		  	<input type='text' id='patch_no' value='1' />
+		  </div>
 		<div class="midi">MIDI Input: <select id=midiIn onchange='changeMidiIn();'>
-			<option value="">Not connected</option>
-		</select>
-			 MIDI Output:
-		<select id=midiOut onchange='changeMidiOut();'>
-			<option value="">Not connected</option>
-		</select>
+			  <option value="">Not connected</option>
+			</select>
+		</div>
+		<div>MIDI Output:
+		  <select id=midiOut onchange='changeMidiOut();'>
+			   <option value="">Not connected</option>
+		  </select>
 		</div>
 
 		<div>
-			<input type='button' id='build' value='Build Patch Script' onclick='build_script()'/>
+			<input type='button' id='build' value='Read Patch' onclick='read_patch()'/>
+		</div>
+		<div>
+			<input type='button' id='build' value='Write Bank' onclick='write_bank()'/>
 		</div>
 
 		<div id='s1'></div>
