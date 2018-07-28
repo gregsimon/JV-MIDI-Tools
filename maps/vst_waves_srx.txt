@@ -1,0 +1,620 @@
+0:Off
+1:StGrand L pA
+2:StGrand R pA
+3:StGrand L pB
+4:StGrand R pB
+5:StGrand L pC
+6:StGrand R pC
+7:StGrand L fA
+8:StGrand R fA
+9:StGrand L fB
+10:StGrand R fB
+11:StGrand L fC
+12:StGrand R fC
+13:SApiano 3
+14:E.Grand BdyA
+15:E.Grand BdyB
+16:E.Grand BdyC
+17:E.Grand 1A
+18:E.Grand 1B
+19:E.Grand 1C
+20:Suitcase p A
+21:Suitcase p B
+22:Suitcase p C
+23:Suitcase mfA
+24:Suitcase mfB
+25:Suitcase mfC
+26:Suitcase f A
+27:Suitcase f B
+28:Suitcase f C
+29:Stage p A
+20:Stage p B
+31:Stage p C
+32:Stage f A
+33:Stage f B
+34:Stage f C
+35:70°EP 5 A p
+36:70°EP 5 B p
+37:70°EP 5 C p
+38:70°EP 5 A f
+39:70°EP 5 B f
+40:70°EP 5 C f
+41:70°EP Bs p A
+42:70‘EP Bs p B
+43:70°EP Bs p C
+44:70°EP Bs f A
+45:70°EP Bs f B
+46:70°EP Bs f C
+47:Wurly 1 p A
+48:Wurly 1 p B
+49:Wurly 1 p C
+50:Wurly 1 mf A
+51:Wurly 1 mf B
+52:Wurly 1 mf C
+53:Wurly 1 f A
+54:Wurly 1f B
+55:Wurly 1f C
+56:Wurly 2 p A
+57:Wurly 2 p B
+58:Wurly 2 p C
+59:Wurly 2 mf A
+60:Wurly 2 mf B
+61:Wurly 2 mf C
+62:Wurly 2 f A
+63:Wurly 2 f B
+64:Wurly 2f C
+65:Pnet p A
+66:Pnet p B
+67:Pnet p C
+68:Pnet f A
+69:Pnet f B
+70:Pnet f C
+71:R.Chord A
+72:R.Chord B
+73:R.Chord C
+74:70s Piano A
+75:70s Piano B
+76:70s PianoLp
+77:70s Lute A
+78:70s Lute B
+79:70s Lute Lp
+80:Vibraphone A
+81:Vibraphone B
+82:Vibraphone C
+83:Clav Pluck A
+84:Clav Pluck B
+85:Clav Pluck C
+86:Ch.Clav A
+87:Ch.Clav B
+88:Ch.Clav C
+89:Clav 1 A
+90:Clav 1 B
+91:Clav 1 C
+92:Clav 2 A
+93:Clav 2 B
+94:Clav 2 C
+95:Clav 3 p A 8
+96:Clav 3 p B
+97:Clav 3 p C
+98:Clav 3 f A
+99:Clav 3 f B
+100:Clav 3f C
+101:Clav 4 p A
+102:Clav 4 p B
+103:Clav 4 p C
+104:Clav 4 mf A
+105:Clav 4 mf B
+106:Clav 4 mf C
+107:Clav 4 f A
+108:Clav 4 f B
+109:Clav 4 f C
+110:Clav 5 p A
+111:Clav 5 p B
+112:Clav 5 p C
+113:Clav 5 f A
+114:Clav 5 f B
+115:Clav 5 f C
+116:Clav 6 p A
+117:Clav 6 p B
+118:Clav 6 p C
+119:Clav 6 f A
+120:Clav 6 f B
+121:Clav 6 f C
+122:Clav 7 A
+123:Clav 7 B
+124:Clav 7 C
+125:Clav Mute 1A
+126:Clav Mute 1B
+127:Clav Mute 1C
+128:Clav Mute 2A
+129:Clav Mute 2B
+120:Clav Mute 2C
+131:Clav Attack
+132:B3 1 A
+133:B3 1B
+134:B31C
+135:B3 2 A
+136:B3 2 B
+137:B3 2 C
+138:B3 2 Ch A
+139:B3 2 Ch B
+140:B3 2 Ch C
+141:B3 2 FL A
+142:B3 2 FL B
+143:B3 2 FL C
+144:B3 3 A
+145:B3 3 B
+146:B3 3 C
+147:B3 3 FL A
+148:B3 3 FL B
+149:B3 3 FL C
+150:B3 4
+151:B3 5 A
+152:B3 5B
+153:B3 5C
+154:B3 6 A
+155:B3 6B
+156:B36C
+157:B3 7 A
+158:B3 7B
+159:B37C
+160:B3 7 FL A
+161:B3 7 FL B
+162:B3 7 FL C
+163:B3 8 A
+164:B3 8 B
+165:B3 8 C
+166:B3 8 Ch A
+167:B3 8 Ch B
+168:B3 8 Ch C
+169:B3 8 FL A
+170:B3 8 FL B
+171:B3 8 FL C
+172:B3 9
+173:B3 10 A
+174:B3 10 B
+175:B3 10 C
+176:B3 10 Ch A
+177:B3 10 Ch B
+178:B3 10 Ch C
+179:B3 10 FL A
+180:B3 10 FL B
+181:B3 10 FL C
+182:B3 11
+183:B3 12
+184:B3 13
+185:B3 14 A
+186:B3 14 B
+187:B3 14 C
+188:B3 14 Ch A
+189:B3 14 Ch B
+190:B3 14 Ch C
+191:B3 14 FL A
+192:B3 14 FL B
+193:B3 14 FL C
+194:B3 15 A
+195:B3 15 B
+196:B3 15 C
+197:B3 15 Ch A
+198:B3 15 Ch B
+199:B3 15 Ch C
+200:B3 15 FL A
+201:B3 15 FL B
+202:B3 15 FL C
+203:B3 16
+204:B3 17
+205:B3 18
+206:B3 19 A
+207:B3 19 B
+208:B3 19 C
+209:B3 Perc 1 A
+210:B3 Perc 1 B
+211:B3 Perc 1 C
+212:B3 Perc 2 A
+213:B3 Perc 2 B
+214:B3 Perc 2 C
+215:B3 Perc 3 A
+216:B3 Perc 3 B
+217:B3 Perc 3 C
+218:B3 Perc3FL A
+219:B3 Perc3FL B
+220:B3 Perc3FL C
+221:B3 Harm 1
+222:B3 Harm 2 A
+223:B3 Harm 2 B
+224:B3 Harm 2 C
+225:B3 Harm 3 A
+226:B3 Harm 3 B
+227:B3 Harm 3 C
+228:B3 Harm3FL A
+229:B3 Harm3FL B
+220:B3 Harm3FL C
+231:Power B swA
+232:Power B slwB
+233:Power B slwC
+234:Power B fstA
+235:Power B fstB
+236:Power B fstC
+237:B3 Click
+238:VX Organ 1 A
+239:VX Organ 1 B
+240:VX Organ 1 C
+241:VX Organ 2 A
+242:VX Organ 2 B
+243:VX Organ 2 C
+244:VX Organ 3 A
+245:VX Organ 3 B
+246:VX Organ 3 C
+247:VX Organ 4 A
+248:VX Organ 4 B
+249:VX Organ 4 C
+250:VX Harpsi A
+251:VX Harpsi B
+252:VX Harpsi C
+253:VX Org Bs A
+254:VX Org Bs B
+255:VX Org Bs C
+256:Farf Organ 1
+257:Farf Organ 2
+258:Farf Organ 3
+259:Farf Organ 4
+260:Farf Organ 5
+261:Farf Organ 6
+262:Farf Organ 7
+263:Farf Organ 8
+264:FarfClar16‘A
+265:FarfClar16‘B
+266:FarfClar16‘C
+267:FarfFlut8‘ A
+268:FarfFlut8‘ B
+269:Farfflut8‘ C
+270:Farf 8‘+2‘
+271:Farf 85+4‘
+272:Farf 8‘+5th
+273:Farf Noise
+274:Tron Str A
+275:Tron Str B
+276:Tron Str C
+277: Tron Str2 A
+278:Tron Str2 B
+279:Tron Str2 C
+280:Tron Vins A
+281:Tron Vins B
+282:Tron Vins C
+283:Tron Cello A
+284:Tron Cello B
+285:Tron Cello C
+286:Tron Flute A
+287:Tron Flute B m
+288:Tron Flute C
+289:Tron Choir A
+290:Tron Choir B
+291:Tron Choir C
+292:Tron Cho.1 A
+293:Tron Cho.1 B
+294:Tron Cho.1 C
+295:Tron Cho.2 A
+296:Tron Cho.2 B
+297:Tron Cho.2 C
+298:Blow Sax A
+299:Blow Sax B
+300:Blow Sax C
+301:T.Sax hrd A
+302:T.Sax hrd B
+303:T.Sax hrd C
+304:Solo Tpt. A
+305:Solo Tpt. B
+306:Solo Tpt. C
+307:R&R Horns A
+308:R&R Horns B
+309:R&R Horns C
+310:Flute Vib A
+311:Flute Vib B
+312:Flute Vib C
+313:Clean TC2 pA
+314:Clean TC2 pB
+315:Clean TC2 pC
+316:Clean TC2 fA
+317:Clean TC2 fB
+318:Clean TC2 fC
+319:NylonGt2 p A
+320:NylonGt2 p B
+321:NylonGt2 p C
+322:NylonGt2 mfA
+323:NylonGt2 mfB
+324:NylonGt2 mfC
+325:NylonGt2 f A
+326:NylonGt2 f B
+327:NylonGt2 f C
+328:D.MuteGt p A
+329:D.MuteGt p B
+320:D.MuteGt p C
+331:D.MuteGt mpA
+332:D.MuteGt mpB
+333:D.MuteGt mpC
+334:D.MuteGt mfA
+335:D.MuteGt mfB
+336:D.MuteGt mfC
+337:Wah Gtr MENU
+338:Wah Down 1
+339:Wah Up 1
+340:Wah Down 2
+341:Wah Up 2
+342:Gtr FX MENU
+343:Gtr Feedback
+344:Gtr Scrap
+345:Gtr Slid Nz
+346:Gtr Cut Nz
+347:Gtr Slap
+348:0B Bass
+349:0B Bass Lp A
+350:0B Bass Lp B
+351:0B Bass Lp C
+383:SH—2 Saw
+352:MG BsPedal
+353:MG BsPdl LpA
+354:MG BsPdI LpC
+355:MG Fat Bs
+356:MG Sharp Bs1
+357:MG Big Bs
+358:MG ClassicBs
+359:MG Sharp Bs2
+360:TB—303 Bass
+361:JP—4 Bass 1
+362:JP—4 Bass 2
+363:SH—101 Bs 1
+364:SH—101 Bs 2
+365:SH—101 Bs 3
+366:SH—101 Bs 4
+367:SH—101 Bs 5
+368:Sys700 Bs 1
+369:Sys700 Bs 2
+370:FM Super Bs
+371:KG Poly Bs
+372:KG Poly BsLp
+373:Muted Bass A
+374:Muted Bass B
+375:Muted Bass C
+376:JP—8 Saw A
+377:JP—8 Saw C
+378:Sys700 Saw
+379:JX—10 Saw
+380:D—50 Saw 1
+381:D—50 Saw 2
+382:SH—5 Saw
+384:SH—101 Saw
+385:SH—1000 Saw
+386:GR—300 Saw 1
+387:GR—300 Saw 2
+388:JU—2 Saw
+389:MG Saw 1A
+390:MG Saw 1C
+391:MG Saw 2
+392:0B Saw 1A
+393:0B Saw 1C
+394:0B Saw 2
+395:P5 Saw 1A
+396:P5 Saw 1C
+397:2600 Saw
+398:AP Saw
+399:0SC Saw
+400:0SC Reso Saw
+401:KG700 Saw
+402:KG800 Saw 1
+403:KG800 Saw 2
+404:KG MS Saw
+405:CS Saw 1A
+406:CS Saw 1C
+407:CS Saw 2
+408:JP—8 SquareA
+409:JP—8 SquareC
+410:JX—10 Square
+411:SH—5 Square
+412:SH—2 Square
+413:MG Square A
+414:MG Square C
+415:0B Square A
+416:0B Square C
+417:P5 Square A
+418:P5 Square C
+419:2600 Square
+420:0SC Square
+421:KG800 Square
+422:KG MS Square
+423:CS Square
+424:JP—8 Pulse 1
+425:JP—8 Pulse 2
+426:JP—8 Pulse 3
+427:JP—8 Pulse 4
+428:JP—8 Pulse 5
+429:SH—1000 Puls
+420:MG Pulse 1A
+431:MG Pulse 1C
+432:MG Pulse 2A
+433:MG Pulse 2C
+434:0B Pulse 1
+435:0B Pulse 2
+436:0B Pulse 3
+437:2600 Pulse 1
+438:2600 Pulse 2
+439:EM Pulse
+440:CS Pulse 1
+441:CS Pulse 2
+442:JU—2 Sub OSC
+443:MG Ramp
+444:MG Triangle
+445:2600Triangle
+446:2600 Sine
+447:JP—8 PWM A
+448:JP—8 PWM B
+449:JP—8 PWM C
+450:MG Dt.Saw A
+451:MG Dt.Saw B
+452:MG Dt.Saw C
+453:P5 Dt.Saw A
+454:P5 Dt.Saw B
+455:P5 Dt.Saw C
+456:MG Dt.Squ A
+457:MG Dt.Squ B
+458:MG Dt.Squ C
+459:Juno Rave A
+460:Juno Rave B
+461:Juno Rave C
+462:Blaster A
+463:Blaster B
+464:Blaster C
+465:JP Hollo A
+466:JP Hollo B
+467:JP Hollo C
+468:JP—8 Str A
+469:JP—8 Str B
+470:JP—8 Str C
+471:0B Str 1A
+472:0B Str 1B
+473:0B Str 1C
+474:0B Str 2A
+475:0B Str 2B
+476:0B Str 2C
+477:AP Str Ens A
+478:AP Str Ens B
+479:AP Str Ens C
+480:Hard 5ths A
+481:Hard 5ths B
+482:Hard 5ths C
+483:OBXP Str A
+484:OBXP Str B
+485:0BXP Str C
+486:OBXP Str Lp
+487:MG Oct A
+488:MG Oct B
+489:MG Oct C
+490:MG Dt.Oct A
+491:MG Dt.Oct B
+492:MG Dt.Oct C
+493:OBXP Brass A
+494:0BXP Brass B
+495:0BXP Brass C
+496:OBXP BrassLp
+497:FM Brass
+498:Waspy
+499:Waspy Lp
+500:0B Lead
+501:0B Lead Lp
+502:JP—6 SqLead
+503:JP—6 SqLd Lp
+504:Blown 1
+505:Blown 2
+506:PG Sweep 1A
+507:PG Sweep 1C
+508:PG Sweep 2A
+509:PG Sweep 2C
+510:D—50 HeavenA
+511:D—50 HeavenB
+512:D—50 HeavenC
+513:JX—8P Vox
+514:JX—8P Vox Lp
+515:VP—330ChoirA
+516:VP—330ChoirB
+517:VP—330ChoirC
+518:P5 Unisync
+519:P5 Unisynclp
+520:P5 Dipthong
+521:P5 DipthngLp
+522:FM Lead
+523:KG800 Lead
+524:MG Lead
+525:MG Lead Lp
+526:JP—8 Lead
+527:Digiwave 1
+528:Digiwave 2
+529:Digiwave 3
+520:Frog wave
+531:SRG FM
+532:Shimmer wave
+533:VS Organ A
+534:VS Organ C
+535:Juno Organ
+536:Juno OrganLp
+537:FM Punch
+538:Mondigital
+539:MondigitalLp
+540:JP—8 Clavi A
+541:JP—8 Clavi C
+542:JP—8 Clavilp
+543:Juno Clavi
+575:FX1B—R(RSS)
+544:P5 X—mod
+545:Steam Drum
+546:Kalimba Atk
+547:Additive
+548:MG Blip
+549:MG Blip Lp
+550:MG Thump
+551:MG Thump Lp
+552:MG Attack
+553:MG Attack Lp
+554:VS Bell 1
+555:VS Bell 2
+556:JP—6 Bell
+557:MKS—80 Xmod!1
+558:MKS—80 Xmod2
+559:MKS—80 Xmod3
+560:MKS—80 Xmod4
+561:MKS—80 Xmod5
+562:Record Noise
+563:MG White Nz
+564:MG Pink Nz
+565:SH—5 Pink Nz
+566:JP—8 X—mod 1
+567:JP—8 X—mod 2
+568:P5 Noise 1
+569:P5 Noise 2
+570:222Z loop
+571:Atmosphere
+572:FX1A—L(RSS)
+573:FX1A—R(RSS)
+574:FX1B—L(RSS)
+576:FX1C—L(RSS)
+577:FX1C—R(RSS)
+578:FX2A—L(RSS)
+579:FX2A—R(RSS)
+580:FX2B—L(RSS)
+581:FX2B—R(RSS)
+582:FX2C—L(RSS)
+583:FX2C—R(RSS)
+584:FX3A—L(RSS)
+585:FX3A—R(RSS)
+586:FX3B—L(RSS)
+587:FX3B—R(RSS)
+588:FX3C—L(RSS)
+589:FX3C—R(RSS)
+590:Shaker MENU2
+591:626 Shaker
+592:Shaker 3
+593:Shaker 4
+594:Shaker 5
+595:Sm.Club
+596:Sm.Club fw
+597:Sm.Club Ip
+598:REV Waspy
+599:REV P5 X—mod
+6OO:REV SteamDrm
+6O1:REV Kalimba
+6O2:REV Additive
+6O3:REV Blip
+6O4:REV Thump
+6O5:REV Attack
+6O6:REV Gt Scrap
+6O7:REV Gt SIdNz
+6O8:REV Gt CutNz
+6O9:REV Gt Slap
+610:REV 626Shakr
+611:REV Shaker 3
+612:REV Shaker 4
+613:REV Shaker 5
+614:REV FX1L RSS
+615:REV FX1R RSS
+616:REV FX2L RSS
+617:REV FX2R RSS
+618:REV FX3L RSS
+619:REV FX3R RSS
