@@ -58,7 +58,7 @@
 57:E.Piano 3C
 58:MK—80 EP A
 59:MK—80 EP B
-6O:MK—80 EP C
+60:MK—80 EP C
 61:EP Hard
 62:EP Distone
 63:Clear Keys
@@ -599,15 +599,15 @@
 598:Plink
 599:Plunk
 600:EP Atk
-6O1:TVEF_ Trig
+601:TVEF_ Trig
 602:0rg Click
 603:Cut Noiz
 604:Bass Body
 605:Flute Click
 606:Gt&BsNz MENU
 607:Ac.BassNz 1
-6O8:Ac.BassNz 2
-6O9:El.BassNz 1
+608:Ac.BassNz 2
+609:El.BassNz 1
 610:E1.BassNz 2
 611:DistGtrNz 1
 612:DistGtrNz 2
@@ -651,7 +651,7 @@
 650:Laser
 651:Thunder 2
 652:AmbientSN pL
-6G53:AmbientSN pR
+653:AmbientSN pR
 654:AmbientSN fL
 655:AmbientSN fR
 656:Wet SN p L
@@ -905,9 +905,9 @@
 904:REV Maple SN
 905:REV OIdFilSN
 906:REV 70s SN
-9O7:REV SN Roll
+907:REV SN Roll
 908:REV NatrISN1
-90O9:REV NatrISN2
+909:REV NatrISN2
 910:REV BalladSN
 911:REV RkSNpL
 912:REV RKSNpR
@@ -958,7 +958,7 @@
 957:REV RKStkIR
 958:REV RKStk2L
 959:REV RKStk2R
-96O:REV Thrill
+960:REV Thrill
 961:REV Dry Kick
 962:REV Mpl Kick
 963:REV RkKik p
@@ -966,8 +966,8 @@
 965:REV RkKik f
 966:REV JzKik p
 967:REV JzKik mf
-96B8:REV JzKik f
-96I:REV Jaz Kick
+968:REV JzKik f
+969:REV Jaz Kick
 970:REV Pillow K
 971:REV Jz Dry K
 972:REV LiteKick
@@ -995,7 +995,7 @@
 994:REV JzTomH p
 995:REV JzTomL f
 996:REV JzTomM f
-997:;REV JzTomH f
+997:REV JzTomH f
 998:REV JzFim L
 999:REV JzFim M
 1000:REV JzFim H
@@ -1025,7 +1025,7 @@
 1024:REV CI HH 5
 1025:REV RkOpHH p
 1026:REV RkKOpHH f
-1027:;REV JzOpHH p
+1027:REV JzOpHH p
 1028:REV JzOpHHmf
 1029:REV JzOpHH f
 1030:REV Op HiHat
@@ -1037,7 +1037,7 @@
 1036:REV PedalHH
 1037:REV PedalHH2
 1038:REV Dance HH
-1039:;REV 70s CIHH
+1039:REV 70s CIHH
 1040:REV 70s OpHH
 1041:REV 606 CIHH
 1042:REV 606 OpHH
@@ -1057,7 +1057,7 @@
 1056:REV Ride 1
 1057:REV Ride 2
 1058:REV RideBell
-1059:;REV RKCCym1p
+1059:REV RKCCym1p
 1060:REV RKCCymif
 1061:REV RkCCym2p
 1062:REV RkCCym2f

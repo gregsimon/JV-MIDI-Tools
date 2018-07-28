@@ -1,0 +1,90 @@
+Bank file patch offsets. This is for the first patch in the Bank file.
+
+name 			0x6c 	12
+category 		0x78 	1
+level			0x7a	1
+pan				0x7b.   1
+current assign  0x93.   1
+oct shift.      0x7f.   1
+coarse tune.    0x7d.   1
+fine tune.      0x7e.   1
+stretch tune dempth 0x80.  1
+pitch bend  up.  0x95. 1
+pitch bend dwn.  0x96. 1
+master tune.   0x4f. 3
+master key shift 0x52 1
+offset-cutoff 0x8e, 1
+offset-res 0x8f, 1
+offset-attack-time, 0x90 1
+offset-rel-time, 0x91, 1
+offset-vel-sens 0x92 2
+priority loud/llast 0x7c 1
+mono/poly 0x82, 1
+legato sw 0x83, 1
+legato retrig 0x84, 1
+analog feel 0x81, 1
+port switch 0x85, 1
+port-leg-normal 0x86 1
+port-time-rate 0x87 1
+port-note-pitch 0x88 1
+port-time 0x89, 1
+
+pitch-scale-tune sw 0x54, 1
+pitch-C  0x5a 
+pitch-C# 0x5b
+pitch-D. 0x5c
+pitch-Eb 0x5d
+pitch-E  0x5e
+pitch-F. 0x5f
+pitch-F# 0x60
+pitch-G. 0x61
+pitch-G# 0x62
+pitch-A. 0x63
+pitch-Bb 0x64
+pitch-B. 0x65
+
+patch structure T1+2 type 0x1f4 1
+patch structure T1+2 boost 0x1f5 1
+patch structure T3+4 type 0x1f6 1
+patch structure T3+4 boost 0x1f7 1
+
+TONE 1
+enable 0x1f9, 1
+wave-group 0x244, 1
+wave-L 0x24a, 3
+wave-R 0x24e, 3
+tone-delay-mode 0x226, 1
+tone-delay-time 0x227, 1
+gain 0x251, 1
+fxm-on 0x252, 1
+fxm-color 0x253, 1
+fxm-depth 0x254, 1
+tempo-sync 0x255, 1
+pitch-kf 0x256, 1
+tune-course 0x21e, 1
+tune-fine 0x21f, 1
+random-pitch 0x220, 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
