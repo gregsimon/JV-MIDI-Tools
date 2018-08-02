@@ -809,7 +809,7 @@
 808:70s Op HiHat
 809:606 Cl HiHat
 810:606 Op HiHat
-811:909 CI HiHat
+811:909 Cl HiHat
 812:909 Op HiHat
 813:808 Claps
 814:HumanClapsEQ

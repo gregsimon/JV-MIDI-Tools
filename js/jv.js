@@ -11,7 +11,7 @@ var studioSetControlChannel = 16;
 
 
 function jv_init() {
-  navigator.requestMIDIAccess().then(onSuccessCallback, onMIDIFailCallback);
+  navigator.requestMIDIAccess({sysex:true}).then(onSuccessCallback, onMIDIFailCallback);
 }
 
 // used for chaining
@@ -77,6 +77,20 @@ var g_tones = [];
 
 function read_patch() {
 
+  //midiOut.send([0xf0, 0x7e, 0x10, 0x06, 0x01, 0xf7]);
+  // read first 12 bytes -- this is the name!
+  //return;
+
+  sendSYSEXwithRolandChecksum_JV([0xf0, 0x41, 
+    0x10, // device ID
+    0x6a, // model ID JV-1010
+    0x11, // cmd -> RQ1
+    0x03, 0x00, 0x00, 0x00, // addr
+    0x00, 0x00, 0x00, 12, // size
+    0x00, // checksum
+    0xf7
+      ]);
+  
 }
 
 // This is the kick-off function that builds
@@ -115,68 +129,6 @@ function collect_next_bank() {
 }
 
 
-function generate_patch_script() {
-  s = "[cubase parse file]\x0a\x0a\
-[parser version 0001]\x0a\x0a\
-[creators first name]Greg\x0a\x0a\
-[creators last name]Simon\x0a\x0a\
-[device manufacturer]ROLAND\x0a\x0a\
-[device name]Integra 7\x0a\x0a\
-[script name]ROLAND Integra 7\x0a\x0a\
-[script version]version 1.00\x0a\x0a\
-\x0a\x0a\
-[define patchnames]\x0a\x0a\
-\x0a\x0a\
-[mode]\tTone\x0a\x0a\
-";
-
-  // we're going to organize these in their instrument
-  // categories; ignoring the sound generation method.
-  // For each category there will be a [g1] followed by [p2] patches.
-
-  var cats = new Object;
-  categories.forEach(function(value, index, array) {
-    if (!cats.hasOwnProperty(value))
-      cats[value] = new Array();
-  });
-
-  // now divide up all the tones into categories.
-  g_tones.forEach(function(tone, index, array){
-    cats[tone.catName].push(tone);
-  });
-
-
-  // Now, write a group for each of the categories
-  for(prop in cats) {
-
-    tones = cats[prop];
-    if (!tones.length)
-      continue;
-
-    s += "[g1]\t\t"+prop+"\x0a\x0a";
-
-    for (i=0; i<tones.length; i++) {
-      tone = tones[i];
-      s += "[p2, "+tone.pc+", "+tone.msb.toString(10)+", "+
-          tone.lsb.toString(10)+"]\t"+tone.name+"\x0a";
-    }
-  }
-
-  s += "\x0a\x0a[end]\x0a\x0a";
-
-  var blob = new Blob([s], {type: "text/plain;charset=utf-8"});
-  saveAs(blob, "roland integra-7.txt");
-
-  // now generate the categories text file
- /* var s = "";
-  for (i=0; i<g_tones.length; i++) {
-    tone = g_tones[i];
-    s += tone.cat.toString(2)+" "+tone.cat.toString(10)+" "+tone.name+"\x0a";
-  }
-
-  var blob = new Blob([s], {type: "text/plain;charset=utf-8"});
-  saveAs(blob, "roland integra-7-categories.txt");*/
-}
 
 var categories = [
  "No Assign", // 0
@@ -655,6 +607,8 @@ function load_part(msb, lsb, pc) {
   midiOut.send([0xc0|ch, pc]);
 }
 
+
+
 // Different sound sources store their name and category
 // at different offsets into the payload. 
 function read_name(engineName) {
@@ -843,8 +797,17 @@ function read_name(engineName) {
 
 // 
 
-function sendSYSEXwithRolandChecksum(msg) {
+function sendSYSEXwithRolandChecksum_JV(msg) {
 	// the message is complete we just need to insert the checksum
+  sum = msg[5]+msg[6]+msg[7]+msg[8]+
+      msg[9]+msg[10]+msg[11]+msg[12];
+  checksum = 128-(sum % 128);
+  msg[13] = checksum;
+  midiOut.send(msg);
+}
+
+function sendSYSEXwithRolandChecksum(msg) {
+  // the message is complete we just need to insert the checksum
   sum = msg[7]+msg[8]+msg[9]+msg[10]+
       msg[11]+msg[12]+msg[13]+msg[14];
   checksum = 128-(sum % 128);
@@ -856,6 +819,11 @@ function printArrayHex(arr) {
   var s = "";
   for (var i=0; i<arr.length; i++) {
     s += arr[i].toString(16) + " ";
+  }
+  console.log(s);
+  s = "";
+  for (var i=0; i<arr.length; i++) {
+    s += String.fromCharCode(arr[i]);
   }
   console.log(s);
 }
@@ -873,11 +841,13 @@ function onSuccessCallback(access) {
     selectMIDIIn.options.add(new Option(port.name, port.fingerprint, false, false));
   });
   selectMIDIIn.onchange = changeMIDIIn;
+  //selectMIDIIn.selectedIndex = 1;
 
   outputs.forEach((port) => {
     selectMIDIOut.options.add(new Option(port.name, port.fingerprint, false, false));
   });
   selectMIDIOut.onchange = changeMIDIOut;
+  //selectMIDIOut.selectedIndex = 1;
 }
 
 function changeMIDIIn(event) {
