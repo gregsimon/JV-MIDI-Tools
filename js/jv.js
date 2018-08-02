@@ -5,9 +5,9 @@ var midiIn = null;
 var midiOut = null;
 var selectMIDIIn = null;
 var selectMIDIOut = null;
-var deviceId = 17;
+var deviceId = 0x10; // JV-1010
+var modelId = 0x6a; // JV-1010
 var studioSetControlChannel = 16;
-
 
 
 function jv_init() {
@@ -18,16 +18,25 @@ function jv_init() {
 var g_next_midi_callback_fn = undefined;
 
 function midiMessageReceived(event) {
-  //console.log("TODO : midiMessageReceived");
-
-  //if (g_bank_timeout_id != undefined)
-  //  clearTimeout(g_bank_timeout_id);
-  //g_bank_timeout_id = undefined;
+  
   if (event.data.length == 1)
     return;
 
   console.log("TODO : midiMessageReceived " + event.data.length);
-  printArrayHex(event.data);
+
+  if (event.data[0] = 0xf0) { // sysex
+    let data = event.data;
+    if (data[1] == 0x41 && data[2] == deviceId && data[3] == modelId) {
+      switch (data[4]) { // cmd
+        case 0x12: // DT1
+        cmd_dt1_received(data);
+        break;
+      }
+    }
+    
+  } else {
+    printArrayHex(event.data);
+  }
 
   return;
 	console.log("MIDI MESSAGE IN "+(event.data.length-13)+
@@ -75,22 +84,202 @@ var g_bank_collection_fns = [
 
 var g_tones = [];
 
+function cmd_dt1_received(data) {
+  // what address is this?
+  // addr is 5,6,7,8
+  let size = data.length - 11;
+
+  if (data[5]=0x03 && data[6]==0x00) {
+    switch(data[7]) {
+      case 0x00: // common
+      parse_common(data);
+      break;
+      case 0x10: // common
+      parse_tone(1, data);
+      break;
+      case 0x12: // common
+      parse_tone(2, data);
+      break;
+      case 0x14: // common
+      parse_tone(3, data);
+      break;
+      case 0x16: // common
+      parse_tone(4, data);
+      break;
+    }
+
+  }
+
+  console.log(data[5].toString(16) + " " + 
+      data[6].toString(16) + " " + 
+      data[7].toString(16) + " " + 
+      data[8].toString(16) + "  sz=" + size);
+
+}
+
+function parse_tone(number, data) {
+  console.log("parse tone " + number);
+}
+
+function parse_common(data) {
+  console.log("parse common");
+  var common = {};
+
+  data = data.slice(9, -1);
+
+  common.name = "";
+  for (i=0; i<12; i++)
+     common.name += String.fromCharCode(data[0+i]);
+
+  common.efxType = data[12];
+  common.efxParams = [];
+  for (i=0; i<12; i++)
+    common.efxParams.push(data[13+i]);
+
+  common.efxOutputAssign = data[0x19];
+  common.efxMixOutSendLevel = data[0x1a];
+  common.efxChorusSendLevel = data[0x1b];
+  common.efxReverbSendLevel = data[0x1c];
+  common.efxControlSource1 = data[0x1d];
+  common.efxControlDepth1 = data[0x1e];
+  common.efxControlSource2 = data[0x1f];
+  common.efxControlDepth2 = data[0x20];
+  common.chorusLevel = data[0x21];
+  common.chorusRate = data[0x22];
+  common.chorusDepth = data[0x23];
+  common.chorusPreDelay = data[0x24];
+  common.chorusFeedback = data[0x25];
+  common.chorusOutput = data[0x26];
+  common.reverbType = data[0x27];
+  common.reverbLevel = data[0x28];
+  common.reverbTime = data[0x29];
+  common.reverbHFDamp = data[0x2a];
+  common.delayFeedback = data[0x2b];
+  common.patchTempo = [ data[0x2c], data[0x2d] ];
+  common.patchLevel = data[0x2e];
+  common.patchPan = data[0x2f];
+  common.analogFeel = data[0x30];
+  common.bendRangeUp = data[0x31];
+  common.bendRangeDown = data[0x32];
+  common.keyAssignMode = data[0x33];
+  common.soloLegato = data[0x34];
+  common.portamentoSwitch = data[0x35];
+  common.portamentoMode = data[0x36];
+  common.portamentoType = data[0x37];
+  common.portamentoStart = data[0x38];
+  common.portamentoTime = data[0x39];
+  common.patchControlSource2 = data[0x3a];
+  common.patchControlSource3 = data[0x3b];
+  common.efxControlHoldPeak = data[0x3c];
+  common.controlHoldPeak = [data[0x3d],data[0x3e], data[0x3f]];
+  common.velocityRangeSwitch = data[0x40];
+  common.octaveShift = data[0x41];
+  common.stretchTuneDepth = data[0x42];
+  common.voicePriority = data[0x43];
+
+  common.structureType1and2 = data[0x44];
+  common.booster1and2 = data[0x45];
+  common.structureType1and2 = data[0x46];
+  common.booster1and2 = data[0x47];
+
+  common.clockSource = data[0x48];
+  common.patchCategory = data[0x49];
+  
+  console.log(JSON.stringify(common));
+}
+
 function read_patch() {
 
-  //midiOut.send([0xf0, 0x7e, 0x10, 0x06, 0x01, 0xf7]);
-  // read first 12 bytes -- this is the name!
-  //return;
-
+  // common
   sendSYSEXwithRolandChecksum_JV([0xf0, 0x41, 
-    0x10, // device ID
-    0x6a, // model ID JV-1010
+    deviceId,   // device ID
+    modelId, // model ID JV-1010
     0x11, // cmd -> RQ1
     0x03, 0x00, 0x00, 0x00, // addr
+    0x00, 0x00, 0x00, 0x4a, // size
+    0x00, // checksum
+    0xf7
+      ]);
+
+  // tone 1
+  sendSYSEXwithRolandChecksum_JV([0xf0, 0x41, 
+    deviceId,   // device ID
+    modelId, // model ID JV-1010
+    0x11, // cmd -> RQ1
+    0x03, 0x00, 0x10, 0x00, // addr
+    0x00, 0x00, 0x01, 0x01, // size
+    0x00, // checksum
+    0xf7
+      ]);
+
+  // tone 2
+  sendSYSEXwithRolandChecksum_JV([0xf0, 0x41, 
+    deviceId,   // device ID
+    modelId, // model ID JV-1010
+    0x11, // cmd -> RQ1
+    0x03, 0x00, 0x12, 0x00, // addr
+    0x00, 0x00, 0x01, 0x01, // size
+    0x00, // checksum
+    0xf7
+      ]);
+
+  // tone 3
+  sendSYSEXwithRolandChecksum_JV([0xf0, 0x41, 
+    deviceId,   // device ID
+    modelId, // model ID JV-1010
+    0x11, // cmd -> RQ1
+    0x03, 0x00, 0x14, 0x00, // addr
+    0x00, 0x00, 0x01, 0x01, // size
+    0x00, // checksum
+    0xf7
+      ]);
+
+  // tone 4
+  sendSYSEXwithRolandChecksum_JV([0xf0, 0x41, 
+    deviceId,   // device ID
+    modelId, // model ID JV-1010
+    0x11, // cmd -> RQ1
+    0x03, 0x00, 0x16, 0x00, // addr
+    0x00, 0x00, 0x01, 0x01, // size
+    0x00, // checksum
+    0xf7
+      ]);
+
+  // patch common 00 00 -  (size = 0x4a)
+  // patch tone 1 10 00 -  (size=0x0101)
+  // patch tone 2 12 00 -  (size=0x0101)
+  // patch tone 3 14 00 -  (size=0x0101)
+  // patch tone 4 16 00 -  (size=0x0101)
+
+
+  
+  //read_param([0x03, 0x00, 0x00, 0x00], 12, "name");
+}
+
+function write_bank() {
+
+  // tone 4
+  sendSYSEXwithRolandChecksum_JV([0xf0, 0x41, 
+    deviceId,   // device ID
+    modelId, // model ID JV-1010
+    0x11, // cmd -> RQ1
+    0x03, 0x00, 0x16, 0x00, // addr
+    0x00, 0x00, 0x01, 0x01, // size
+    0x00, // checksum
+    0xf7
+      ]);
+}
+
+function read_param(address, sz, name) {
+  sendSYSEXwithRolandChecksum_JV([0xf0, 0x41, 
+    deviceId,   // device ID
+    modelId, // model ID JV-1010
+    0x11, // cmd -> RQ1
+    address[0], address[1], address[2], address[3], // addr
     0x00, 0x00, 0x00, 12, // size
     0x00, // checksum
     0xf7
       ]);
-  
 }
 
 // This is the kick-off function that builds
