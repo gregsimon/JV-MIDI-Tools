@@ -119,12 +119,114 @@ function cmd_dt1_received(data) {
 
 function parse_tone(number, data) {
   console.log("parse tone " + number);
+  var tone = {};
+  data = data.slice(9, -1);
+
+  tone.toneSwitch = data[0];
+  tone.waveGroupType = data[1];
+  tone.waveGroupId = data[2];
+  tone.waveGroupNumber = [data[3], data[4]];
+  tone.waveGain = data[5];
+  tone.fxmSwitch = data[6];
+  tone.fxmColor = data[7];
+  tone.fxmDepth = data[8];
+  tone.toneDelayMode = data[9];
+  tone.toneDelayTime = data[0xa];
+  tone.velocityCrossFade = data[0xb];
+  tone.velocityRange = [data[0xc], data[0xd]];
+  tone.keyboardRange = [data[0xe], data[0xf]];
+  tone.redamperControlSwitch = data[0x10];
+  tone.volumeControlSwitch = data[0x11];
+  tone.hold1ControlSwitch = data[0x12];
+  tone.pitchBendControlSwitch = data[0x13];
+  tone.panControlSwitch = data[0x14];
+
+  tone.controller = [
+  [[ data[0x15], data[0x16]],
+   [ data[0x17], data[0x18]],
+   [ data[0x19], data[0x1a]],
+   [ data[0x1b], data[0x1c]]
+   ],
+  [[ data[0x1d], data[0x1e]],
+   [ data[0x1f], data[0x20]],
+   [ data[0x21], data[0x22]],
+   [ data[0x23], data[0x24]]
+   ],
+  [[ data[0x25], data[0x26]],
+   [ data[0x27], data[0x28]],
+   [ data[0x29], data[0x2a]],
+   [ data[0x2b], data[0x2c]]
+   ]
+  ];
+
+  tone.lfo = [
+  { waveform:data[0x2d], keySync:data[0x2e], rate:data[0x2f], offset:data[0x30], 
+    delayTime:data[0x31], fadeMode:data[0x32], fadeTime:data[0x33], externalSync:data[0x34]},
+  { waveform:data[0x35], keySync:data[0x36], rate:data[0x37], offset:data[0x38], 
+    delayTime:data[0x39], fadeMode:data[0x3a], fadeTime:data[0x3b], externalSync:data[0x3c]},
+  ]
+
+  tone.courseTune = data[0x3d];
+  tone.fineTune = data[0x3e];
+  tone.randomPitchDepth = data[0x3f];
+  tone.pitchKeyfollow = data[0x40];
+  tone.pitchEnvelopeDepth = data[0x41];
+  tone.pitchEnvelopeVelocitySens = data[0x42];
+  tone.pitchEnvelopeVelocityTime1 = data[0x43];
+  tone.pitchEnvelopeVelocityTime4 = data[0x44];
+  tone.pitchEnvelopeTimeKeyfollow = data[0x45];
+  tone.pitchEnvelopeTime = [data[0x46],data[0x47], data[0x48],data[0x49]];
+  tone.pitchEnvelopeLevel = [data[0x4a],data[0x4b], data[0x4c],data[0x4d]];
+  tone.pitchLfo1Depth = data[0x4e];
+  tone.pitchLfo2Depth = data[0x4f];
+
+  tone.filterType = data[0x50];
+  tone.cutoffFrequency = data[0x51];
+  tone.cutoffKeyfollow = data[0x52];
+  tone.resonance = data[0x53];
+  tone.resonanceVelocitySens = data[0x54];
+  tone.filterEnvelopeDepth = data[0x55];
+  tone.filterEnvelopeVelocityCurve = data[0x56];
+  tone.filterEnvelopeVelocitySens = data[0x57];
+  tone.filterEnvelopeVelocityTime1 = data[0x58];
+  tone.filterEnvelopeVelocityTime4 = data[0x59];
+  tone.filterEnvelopeTimeKeyfollow = data[0x5a];
+  tone.filterEnvelopeTime = [data[0x5b],data[0x5c], data[0x5d],data[0x5e]];
+  tone.filterEnvelopeLevel = [data[0x5f],data[0x60], data[0x61],data[0x62]];
+  tone.filterLfo1Depth = data[0x4e];
+  tone.filterLfo2Depth = data[0x4f];
+
+  tone.level = data[0x65];
+  tone.biasDirection = data[0x66];
+  tone.biasPosition = data[0x67];
+  tone.biasLevel = data[0x68];
+  tone.levelEnvelopeVelocityCurve = data[0x69];
+  tone.levelEnvelopeVelocitySens = data[0x6a];
+  tone.levelEnvelopeVelocityTime1 = data[0x6b];
+  tone.levelEnvelopeVelocityTime4 = data[0x6c];
+  tone.levelEnvelopeTimeKeyfollow = data[0x6d];
+  tone.levelEnvelopeTime = [data[0x6e],data[0x6f], data[0x70],data[0x71]];
+  tone.levelEnvelopeLevel = [data[0x72],data[0x73], data[0x74]];
+  tone.levelLfo1Depth = data[0x75];
+  tone.levelLfo2Depth = data[0x76];
+  tone.pan = data[0x77];
+  tone.panKeyfollow = data[0x78];
+  tone.randomPanDepth = data[0x79];
+  tone.alternatePanDepth = data[0x7a];
+  tone.panLfo1Depth = data[0x7b];
+  tone.panLfo1Depth = data[0x7c];
+
+  tone.outputAssign = data[0x7d];
+  tone.mixEfxSendLevel = data[0x7e];
+  tone.chorusSendLevel = data[0x7f];
+  tone.reverbSendLevel = data[0x80];
+
+  console.log(JSON.stringify(tone));
 }
 
 function parse_common(data) {
   console.log("parse common");
   var common = {};
-
   data = data.slice(9, -1);
 
   common.name = "";
